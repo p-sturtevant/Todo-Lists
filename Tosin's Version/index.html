@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
+  <title>TaskApp React</title>
+</head>
+
+<body>
+  <div id="root">
+    <!-- <main>
+      <h1>☑︎ Task App</h1>
+      <h2>👋 Hello, Alice!</h2>
+      <h3>You have 3 tasks due:</h3>
+      <form>
+        <input type="text" placeholder="Add a new task..." value="" />
+        <button type="submit">Add</button>
+      </form>
+      <ol>
+        <li>Eat some mac and cheese</li>
+        <li>Open the window</li>
+        <li>Install Linux</li>
+      </ol>
+    </main> -->
+  </div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin></script>
+
+  <script type="text/babel">
+    /**
+
+    TaskApp (state: ==> tasks, setTasks)
+    - Header - Title (inplace)
+    - Greeting - Hello, name (inplace - mounted with name prop)
+    - TaskCounter - you have number tasks (in place)
+
+    - TaskForm - input and add button (<TaskForm setTasks/>)
+
+    - TaskList - list of tasks (<TaskList tasks={tasks} />)
+
+    - - TaskItem - each individual task (<TaskItem task={task}/>)
+
+    */
+
+    const { useState, useEffect } = React
+
+    const api = {
+      get: function () {
+        return Promise.resolve([
+          { value: "Teach React", completed: true },
+          { value: "Teach Redux", completed: false },
+          { value: "Teach Node", completed: false },
+          { value: "Teach MySQL", completed: false }
+        ])
+      }
+    }
+
+    function TaskForm({ addTasks }) {
+      const [value, setValue] = useState('')
+      return (
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          addTasks(value)
+          setValue('')
+        }}>
+          <input onChange={(e) => setValue(e.target.value)} placeholder="Add a new task..." value={value} />
+          <button type="submit">Add</button>
+        </form>
+      )
+    }
+
+    function TaskItem({ task }) {
+      return (
+        <li>
+          <span style={{ color: task.completed ? "green" : "red" }}>
+            {task.value}
+          </span>
+        </li>
+      )
+    }
+
+    function TaskList({ tasks }) {
+      return (
+        <ol>
+          {tasks.map((task, i) => {
+            return (
+              <TaskItem key={i} task={task} />
+            )
+          })}
+        </ol>
+
+      )
+    }
+
+    function TaskApp({ name }) {
+      const [tasks, setTasks] = useState([])
+
+      useEffect(() => {
+        console.log('useEffect')
+        api.get("/tasks").then((data) => setTasks(data))
+      }, [])
+
+      function addTasks(taskString) {
+        setTasks([...tasks, { value: taskString, completed: false }])
+      }
+
+      return (
+        <main>
+          <h1>☑︎ Task App</h1>
+          <h2>👋 Hello, {name}!</h2>
+          <h3>You have {tasks.length} tasks due:</h3>
+          <TaskForm addTasks={addTasks} />
+          <TaskList tasks={tasks} />
+        </main>
+      )
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'));
+    root.render(<TaskApp name="Tosin" />)
+
+  </script>
+</body>
+
+</html>

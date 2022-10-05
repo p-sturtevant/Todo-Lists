@@ -1,0 +1,56 @@
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+body {
+  background-color: #b8effe;
+  color: rgb(0, 0, 0);
+}
+
+.App-header {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom: 1px solid black;
+  margin: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+form {
+  margin: 40px 40px;
+  display: flex;
+  gap: 5px;
+}
+
+.add-task {
+  height: 30px;
+  padding-left: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.btn {
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: white;
+}
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
