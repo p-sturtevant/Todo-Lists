@@ -1,0 +1,45 @@
+body {
+  background-color: #feb8eb;
+  color: rgb(255, 255, 255);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.header {
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 48px;
+  border-bottom: 1px solid #FFF;
+  margin: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+form {
+  margin: 40px 18px;
+  display: flex;
+  gap: 5px;
+}
+
+.add-task {
+  height: 30px;
+  padding-left: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.btn {
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.task-list {
+  font-size: 24px;
+}
+
+.task-list li {
+  padding-top: 10px;
+}
